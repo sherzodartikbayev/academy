@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "*", pathname: "**" }],
+  },
 };
 
 export default nextConfig;
