@@ -13,7 +13,7 @@ const CourseCard = ({ course }: CourseCardPros) => {
           src={course.thumbnail}
           alt={course.title}
           fill
-          className="rounded-lg"
+          className="rounded-lg object-cover"
         />
       </div>
       <h2 className="p-2 text-xl font-space-grotesk font-semibold">

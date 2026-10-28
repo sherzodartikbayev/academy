@@ -1,6 +1,7 @@
 import CourseCard from "@/components/cards/course.card";
+import SourceCodeCard from "@/components/cards/source-code.card";
 import { Button } from "@/components/ui/button";
-import { courses } from "@/constants";
+import { courses, projects, source_codes } from "@/constants";
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
 
@@ -64,9 +65,9 @@ const HomePage = () => {
         ></Button>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {courses.map((course) => (
-            <Link href={`/courses/${course.slug}`} key={course.slug}>
-              <CourseCard course={course} />
+          {projects.map((project) => (
+            <Link href={`/projects/${project.slug}`} key={project.slug}>
+              <CourseCard course={project} />
             </Link>
           ))}
         </div>
@@ -79,9 +80,9 @@ const HomePage = () => {
           className="text-xl"
         ></Button>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {courses.map((course) => (
-            <CourseCard course={course} key={course.slug} />
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 mt-4">
+          {source_codes.map((codes) => (
+            <SourceCodeCard sourceCode={codes} key={codes.id} />
           ))}
         </div>
       </div>

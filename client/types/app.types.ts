@@ -5,7 +5,7 @@ export interface CourseType {
 }
 
 export interface SourceCodeType {
-  _id: string;
+  id: number;
   title: string;
-  repositoryUrl: string;
+  link: string;
 }

@@ -12,21 +12,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  Braces,
-  BriefcaseBusiness,
-  Bug,
-  Camera,
-  Cat,
-  CircleGauge,
-  GitCompareArrows,
-  Home,
-  Play,
-  Rss,
-  Send,
-  Terminal,
-  UserPen,
-} from "lucide-react";
+import { navbar_items, social_items, startups } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -90,37 +76,3 @@ const AppSidebar = () => {
 };
 
 export default AppSidebar;
-
-const navbar_items = [
-  { title: "Home", href: "/", icon: Home },
-  { title: "Courses", href: "/courses", icon: Braces },
-  { title: "Projects", href: "/projects", icon: Terminal },
-  { title: "Source codes", href: "/source-codes", icon: Bug },
-  { title: "Dashboard", href: "/dashboard", icon: CircleGauge },
-];
-
-const startups = [
-  { title: "Blogs", href: "/blogs", icon: Rss },
-  { title: "Resume builder", href: "/resume-builder", icon: UserPen },
-  { title: "Beautiful code", href: "/beautiful-code", icon: GitCompareArrows },
-];
-
-const social_items = [
-  { title: "Telegram", href: "https://t.me/sherzod_artikbayev", icon: Send },
-  {
-    title: "Instagram",
-    href: "https://www.instagram.com/sherzodartikbayevvv",
-    icon: Camera,
-  },
-  {
-    title: "LinkedIn",
-    href: "https://www.linkedin.com/in/sherzodartikbayev/",
-    icon: BriefcaseBusiness,
-  },
-  { title: "Youtube", href: "https://www.youtube.com", icon: Play },
-  {
-    title: "GitHub",
-    href: "https://www.github.com/sherzodartikbayev",
-    icon: Cat,
-  },
-];
