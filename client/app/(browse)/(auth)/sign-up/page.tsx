@@ -2,17 +2,13 @@ import { Separator } from "@/components/ui/separator";
 import SocialButton from "../_components/social-button";
 import SignUpForm from "@/components/forms/sign-up.form";
 import Link from "next/link";
+import Title from "./_components/title";
 
 const SignUpPage = () => {
   return (
     <div className="h-fit bg-card rounded-lg shadow-lg w-md">
       <div className="p-6">
-        <h2 className="text-xl font-space-grotesk font-semibold">
-          Create your account
-        </h2>
-        <p className="text-sm text-muted-foreground mb-5">
-          Welcome! Please fill in the details to get started.
-        </p>
+        <Title />
         <SocialButton />
         <Separator className="my-6" />
         <SignUpForm />

@@ -1,3 +1,5 @@
+"use client";
+
 import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,15 +9,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { IoMdArrowDropright } from "react-icons/io";
+import { useSignUpStore } from "@/stores/use-sign-up.store";
 
 const CompleteProfile = () => {
+  const { setStep, setUser } = useSignUpStore();
+
   const form = useForm<z.infer<typeof completeProfileSchema>>({
     resolver: zodResolver(completeProfileSchema),
     defaultValues: { email: "", firstName: "", lastName: "" },
   });
 
   function onSubmit(values: z.infer<typeof completeProfileSchema>) {
-    console.log(values);
+    setStep("verify-email");
+    setUser(values);
   }
 
   return (

@@ -21,7 +21,7 @@ const SignInPage = () => {
           href="/sign-up"
           className="text-primary hover:underline font-medium"
         >
-          Sign In
+          Sign Up
         </Link>
       </div>
     </div>

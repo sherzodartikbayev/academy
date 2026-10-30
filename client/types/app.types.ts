@@ -15,3 +15,9 @@ export interface SourceCodeType {
   title: string;
   link: string;
 }
+
+export interface UserType {
+  email: string;
+  firstName: string;
+  lastName: string;
+}
