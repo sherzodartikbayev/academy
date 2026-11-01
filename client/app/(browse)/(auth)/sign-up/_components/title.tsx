@@ -24,9 +24,12 @@ const Title = () => {
         <h2 className="text-xl font-space-grotesk font-semibold">
           Verify Email
         </h2>
-        We have sent 4 digits code to your email address{" "}
-        <span className="font-bold text-primary">({user?.email})</span>. Please
-        check your inbox and enter code below.
+        <p className="text-sm text-muted-foreground mb-5">
+          {" "}
+          We have sent 4 digits code to your email address{" "}
+          <span className="font-bold text-primary">({user?.email})</span>.
+          Please check your inbox and enter code below.
+        </p>
       </>
     );
   }

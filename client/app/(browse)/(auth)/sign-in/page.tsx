@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import SocialButton from "../_components/social-button";
 import Link from "next/link";
+import SignInForm from "@/components/forms/sign-in.form";
 
 const SignInPage = () => {
   return (
@@ -14,6 +15,7 @@ const SignInPage = () => {
         </p>
         <SocialButton />
         <Separator className="my-6" />
+        <SignInForm />
       </div>
       <div className="bg-secondary py-6 rounded-lg text-center text-sm text-muted-foreground mt-5">
         Do not have an any account?{" "}

@@ -20,6 +20,7 @@ const Done = () => {
             <IoMdArrowDropright className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         }
+        nativeButton={false}
       ></Button>
     </>
   );

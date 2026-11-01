@@ -12,8 +12,8 @@ const SignUpForm = () => {
   return (
     <>
       {step === "complete-profile" && <CompleteProfile />}
-      {step === "password-field" && <PasswordField />}
       {step === "verify-email" && <VerifyEmail />}
+      {step === "password-field" && <PasswordField />}
       {step === "done" && <Done />}
     </>
   );

@@ -6,9 +6,13 @@ export const completeProfileSchema = z.object({
   lastName: z.string().min(2, { message: "Last name is required" }).max(50),
 });
 
-export const signInSchema = z.object({
-  email: z.string().email(),
-});
+export const signInSchema = (needsPassword: boolean) =>
+  z.object({
+    email: z.string().email(),
+    password: needsPassword
+      ? z.string().min(8).max(100)
+      : z.string().optional(),
+  });
 
 export const verifyEmailSchema = z.object({
   code: z
@@ -40,3 +44,7 @@ export const passwordFieldSchema = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
+
+export const enterEmailSchema = z.object({
+  email: z.string().email(),
+});

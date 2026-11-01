@@ -36,7 +36,7 @@ const CompleteProfile = () => {
               <Input
                 {...field}
                 id="firstName"
-                placeholder="Your name"
+                placeholder="Your firstname"
                 aria-invalid={fieldState.invalid}
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
