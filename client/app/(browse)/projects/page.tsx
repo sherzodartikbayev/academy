@@ -9,7 +9,7 @@ const ProjectsPage = () => {
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((course) => (
-          <Link href={`/courses/${course.slug}`} key={course.slug}>
+          <Link href={`/projects/${course.slug}`} key={course.slug}>
             <CourseCard course={course} />
           </Link>
         ))}
