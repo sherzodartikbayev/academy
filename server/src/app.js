@@ -3,6 +3,8 @@ import helmet from "helmet";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import routes from "./routes/index.route.js";
+import errorMiddleware from "./middlewares/error.middleware.js";
+import notFoundMiddleware from "./middlewares/not-found.middleware.js";
 
 const app = express();
 
@@ -15,5 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api", routes);
+
+// Error handling middleware
+app.use(errorMiddleware);
+app.use(notFoundMiddleware);
 
 export default app;
