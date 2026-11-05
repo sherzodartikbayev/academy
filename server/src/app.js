@@ -5,12 +5,13 @@ import cookieParser from "cookie-parser";
 import routes from "./routes/index.route.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import notFoundMiddleware from "./middlewares/not-found.middleware.js";
+import { envConfig } from "./config/environment.config.js";
 
 const app = express();
 
 // Middlewares
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(cors({ origin: envConfig.CLIENT_URL, credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

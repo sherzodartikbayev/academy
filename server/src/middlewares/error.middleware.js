@@ -1,7 +1,8 @@
+import { envConfig } from "../config/environment.config.js";
+
 export default function errorMiddleware(err, req, res, next) {
-  const statusCode = res.statusCode || 500;
-  res.status(statusCode).json({
+  res.status(400).json({
     message: err.message || "Internal Server Error",
-    stack: process.env.NODE_ENV === "production" ? null : err.stack,
+    stack: envConfig.NODE_ENV === "production" ? null : err.stack,
   });
 }
