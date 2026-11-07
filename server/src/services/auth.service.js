@@ -10,7 +10,17 @@ export const login = async (data) => {
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) throw new Error("Invalid password");
 
-  return { message: "Login successful", data: user };
+  return {
+    message: "Login successful",
+    data: {
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      avatar: user.avatar,
+    },
+    success: true,
+  };
 };
 
 export const verifyEmail = async (data) => {
