@@ -1,5 +1,5 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import AppSidebar from "./_components/app.sidebar";
 import AppNavbar from "./_components/app.navbar";
 
@@ -12,7 +12,9 @@ const Layout = ({ children }: LayoutProps) => {
     <SidebarProvider>
       <AppSidebar />
       <main className="w-full lg:mr-2">
-        <AppNavbar />
+        <Suspense>
+          <AppNavbar />
+        </Suspense>
         <div className="mt-2 max-w-6xl mx-auto mb-12">{children}</div>
       </main>
     </SidebarProvider>

@@ -10,20 +10,18 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { IoMdArrowDropright } from "react-icons/io";
-import { AlertCircleIcon, Eye, EyeOff } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 import Reveal from "../shared/reveal";
 import { axiosClient } from "@/lib/http";
-import { Alert, AlertDescription } from "../ui/alert";
-import ErrorAlert from "../shared/error-alert";
 import { signIn } from "next-auth/react";
+import Spinner from "../shared/spinner";
+import AlertCard from "../cards/alert.card";
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [needsPassword, setNeedsPassword] = useState(false);
   const [error, setError] = useState("");
-
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const schema = useMemo(() => signInSchema(needsPassword), [needsPassword]);
 
@@ -33,10 +31,10 @@ const SignInForm = () => {
   });
 
   const handleCheckEmail = async () => {
-    setError("");
-
     const isValid = await form.trigger("email");
     if (!isValid) return;
+
+    setLoading(true);
 
     try {
       const { data } = await axiosClient.post("/api/auth/verify-email", {
@@ -49,16 +47,19 @@ const SignInForm = () => {
     } catch (error) {
       const result = error as Error;
       setError(result.message);
+      setLoading(false);
       setTimeout(() => {
         setError("");
       }, 2000);
+    } finally {
+      setLoading(false);
     }
   };
 
   const onSubmit = async (values: z.infer<typeof schema>) => {
     const { email, password } = values;
     if (!email || !password) return;
-
+    setLoading(true);
     try {
       const { data } = await axiosClient.post("/api/auth/login", values);
       if (data.success) {
@@ -73,12 +74,13 @@ const SignInForm = () => {
       setTimeout(() => {
         setError("");
       }, 2000);
+      setLoading(false);
     }
   };
 
   return (
     <>
-      <>{error && <ErrorAlert message={error} />}</>
+      <>{error && <AlertCard message={error} variant="error" />}</>
 
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <Controller
@@ -108,9 +110,14 @@ const SignInForm = () => {
             type="button"
             className="w-full group"
             onClick={handleCheckEmail}
+            disabled={loading}
           >
             <span>Continue</span>
-            <IoMdArrowDropright className="size-4 transition-transform group-hover:translate-x-1" />
+            {loading ? (
+              <Spinner />
+            ) : (
+              <IoMdArrowDropright className="size-4 transition-transform group-hover:translate-x-1" />
+            )}
           </Button>
         )}
         {needsPassword && (
@@ -150,9 +157,17 @@ const SignInForm = () => {
               )}
             />
 
-            <Button type="submit" className="mt-4 w-full group">
+            <Button
+              type="submit"
+              className="mt-4 w-full group"
+              disabled={loading}
+            >
               <span>Continue</span>
-              <IoMdArrowDropright className="size-4 transition-transform group-hover:translate-x-1" />
+              {loading ? (
+                <Spinner />
+              ) : (
+                <IoMdArrowDropright className="size-4 transition-transform group-hover:translate-x-1" />
+              )}
             </Button>
           </Reveal>
         )}

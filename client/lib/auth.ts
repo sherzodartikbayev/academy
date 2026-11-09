@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
@@ -31,7 +31,6 @@ export const auth: NextAuthOptions = {
             JSON.stringify({ email: data.user.email, name: data.user._id }),
           );
         }
-        return null;
       },
     }),
   ],
@@ -51,5 +50,3 @@ export const auth: NextAuthOptions = {
   jwt: { secret: process.env.NEXTAUTH_JWT_SECRET },
   secret: process.env.NEXTAUTH_SECRET,
 };
-
-export default NextAuth(auth);

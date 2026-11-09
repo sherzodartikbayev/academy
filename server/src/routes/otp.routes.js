@@ -4,6 +4,6 @@ import * as OtpController from "../controllers/otp.controller.js";
 const router = express.Router();
 
 router.post("/send", OtpController.sendOtp);
-router.post("/verify-otp", OtpController.verifyOtp);
+router.post("/verify", OtpController.verifyOtp);
 
 export default router;

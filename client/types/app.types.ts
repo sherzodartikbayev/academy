@@ -17,7 +17,14 @@ export interface SourceCodeType {
 }
 
 export interface UserType {
-  email: string;
+  _id: string;
   firstName: string;
   lastName: string;
+  email: string;
+  avatar: ImageType;
+}
+
+export interface ImageType {
+  url: string;
+  key: string;
 }
