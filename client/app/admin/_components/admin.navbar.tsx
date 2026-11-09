@@ -1,0 +1,22 @@
+import Logo from "@/components/shared/logo";
+import { ModeToggle } from "@/components/shared/mode-toggle";
+import { Button } from "@/components/ui/button";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Contact, Link } from "lucide-react";
+
+const AdminNavbar = () => {
+  return (
+    <div className="w-full h-20 bg-sidebar border px-4 mt-2 rounded-lg sticky top-2 z-50">
+      <div className="flex items-center justify-between h-full">
+        <Logo />
+
+        <div className="flex items-center lg:gap-x-2 gap-x-1">
+          <SidebarTrigger />
+          <ModeToggle />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminNavbar;

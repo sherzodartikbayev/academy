@@ -2,6 +2,7 @@ import {
   Braces,
   Bug,
   CircleGauge,
+  GaugeCircle,
   GitCompareArrows,
   Home,
   Rss,
@@ -152,4 +153,11 @@ export const social_items = [
     href: "https://www.github.com/sherzodartikbayev",
     icon: FaGithub,
   },
+];
+
+export const admin_navbar_items = [
+  { title: "Dashboard", href: "/admin", icon: GaugeCircle },
+  { title: "Courses", href: "/admin/courses", icon: Braces },
+  { title: "Projects", href: "/admin/projects", icon: Terminal },
+  { title: "Source codes", href: "/admin/source-codes", icon: Bug },
 ];

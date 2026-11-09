@@ -48,3 +48,24 @@ export const passwordFieldSchema = z
 export const enterEmailSchema = z.object({
   email: z.string().email(),
 });
+
+export const createCourseSchema = z.object({
+  title: z
+    .string({ error: "Title is required" })
+    .min(5, { message: "Title must be at least 5 characters long." })
+    .max(100),
+  slug: z
+    .string({ error: "Slug is required" })
+    .min(5, { message: "Slug must be at least 5 characters long" })
+    .max(100)
+    .trim()
+    .regex(/^[a-z0-9]+(?:[a-z0-9]+)*$/, {
+      message: "Slug can only contain lowercase letters, numbers and hypens",
+    }),
+  level: z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED"], {
+    error: "Level is required",
+  }),
+  category: z.enum(["FRONTEND", "BACKEND", "MOBILE"], {
+    error: "Category is required",
+  }),
+});
