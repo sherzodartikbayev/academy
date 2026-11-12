@@ -1,15 +1,22 @@
-import CreateCourseModal from "./_components/create-course-modal";
+import { Separator } from '@/components/ui/separator'
+import CourseCard from './_components/course.card'
+import CreateCourseModal from './_components/create-course-modal'
 
 const CoursesPage = () => {
   return (
-    <div>
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold font-space-grotesk">Courses</h2>
+    <div className='mt-4'>
+      <div className='flex justify-between items-center'>
+        <h2 className='text-2xl font-semibold font-space-grotesk'>Courses</h2>
 
         <CreateCourseModal />
       </div>
-    </div>
-  );
-};
+      <Separator className='my-4' />
 
-export default CoursesPage;
+      <div className='grid grid-cols-3 gap-4'>
+        <CourseCard />
+      </div>
+    </div>
+  )
+}
+
+export default CoursesPage

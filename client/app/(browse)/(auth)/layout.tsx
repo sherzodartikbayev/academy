@@ -4,7 +4,7 @@ const Layout = ({ children }: ChildProps) => {
   return (
     <div className="mt-4 flex justify-center items-center h-[80vh]">
       {children}
-    </div>
+      </div>
   );
 };
 
