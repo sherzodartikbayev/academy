@@ -1,5 +1,11 @@
-const Overviews = () => {
-  return <div>Overviews</div>
+import { CourseType } from "@/types/app.types";
+
+interface Props {
+  courseData: CourseType;
 }
 
-export default Overviews
+const Overviews = ({ courseData }: Props) => {
+  return <div>Overviews</div>;
+};
+
+export default Overviews;

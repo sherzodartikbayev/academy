@@ -1,30 +1,40 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
 export interface ChildProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export interface CourseType {
-  slug: string;
-  title: string;
-  thumbnail: string;
+  _id: string
+  title: string
+  slug: string
+  level: string
+  category: string
+  excerpt: string
+  forWhom: string
+  whatYouWillLearn: string
+  keywords: string
+  isPublished: boolean
+  type: string
+  createdAt: string
+  previewImage: ImageType
 }
 
 export interface SourceCodeType {
-  id: number;
-  title: string;
-  link: string;
+  id: number
+  title: string
+  link: string
 }
 
 export interface UserType {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  avatar: ImageType;
+  _id: string
+  firstName: string
+  lastName: string
+  email: string
+  avatar: ImageType
 }
 
 export interface ImageType {
-  url: string;
-  key: string;
+  url: string
+  key: string
 }

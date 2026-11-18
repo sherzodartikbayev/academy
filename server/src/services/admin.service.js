@@ -17,14 +17,14 @@ export const getOneCourse = async (id) => {
 };
 
 export const createCourse = async (data) => {
-  const { title, slug, level, category } = data;
+  const { slug } = data;
   const course = await courseModel.findOne({ slug });
 
   if (course) {
     throw new Error("Course with this slug already exists");
   }
 
-  const newCourse = await courseModel.create({ title, slug, level, category });
+  const newCourse = await courseModel.create(data);
 
   return newCourse;
 };
@@ -42,7 +42,7 @@ export const editCourse = async (id, data) => {
 
 export const deleteCourse = async (id) => {
   const course = await courseModel.findById(id);
-  if (!course) throw new Error("Course nor found");
+  if (!course) throw new Error("Course not found");
 
   await courseModel.findByIdAndDelete(id);
 

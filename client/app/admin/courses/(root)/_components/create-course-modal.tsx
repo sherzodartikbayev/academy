@@ -11,10 +11,13 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 
 const CreateCourseModal = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger render={<Button variant="default" size={"sm"} />}>
         Create course
       </AlertDialogTrigger>
@@ -29,7 +32,7 @@ const CreateCourseModal = () => {
 
         <Separator />
 
-        <CreateCourseForm />
+        <CreateCourseForm setOpen={setOpen} />
       </AlertDialogContent>
     </AlertDialog>
   );

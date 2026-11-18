@@ -1,5 +1,11 @@
-const Thumbnail = () => {
-  return <div>Thumbnail</div>
+import { CourseType } from "@/types/app.types";
+
+interface Props {
+  courseData: CourseType;
 }
 
-export default Thumbnail
+const Thumbnail = ({ courseData }: Props) => {
+  return <div>Thumbnail</div>;
+};
+
+export default Thumbnail;

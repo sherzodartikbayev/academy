@@ -1,5 +1,11 @@
-const Curriculum = () => {
-  return <div>Curriculum</div>
+import { CourseType } from "@/types/app.types";
+
+interface Props {
+  courseData: CourseType;
 }
 
-export default Curriculum
+const Curriculum = ({ courseData }: Props) => {
+  return <div>Curriculum</div>;
+};
+
+export default Curriculum;
