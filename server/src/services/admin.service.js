@@ -3,7 +3,6 @@ import lessonModel from "../models/lesson.model.js";
 import sectionModel from "../models/section.model.js";
 
 // Course
-
 export const getAllCourses = async () => {
   const courses = await courseModel.find().lean();
   return courses;
@@ -50,7 +49,6 @@ export const deleteCourse = async (id) => {
 };
 
 // Section
-
 export const getSections = async (courseId) => {
   const sections = await sectionModel
     .find({ course: courseId })
@@ -98,7 +96,6 @@ export const deleteSection = async (id) => {
 };
 
 // Lesson
-
 export const getLessons = async (sectionId) => {
   const sections = await lessonModel.find({ sectionId }).sort({ position: 1 });
 

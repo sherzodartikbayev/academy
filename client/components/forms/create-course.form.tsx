@@ -22,11 +22,7 @@ import {
 } from "../ui/select";
 import { toast } from "../ui/toast";
 
-const CreateCourseForm = ({
-  setOpen,
-}: {
-  setOpen: (open: boolean) => void;
-}) => {
+const CreateCourseForm = () => {
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof createCourseSchema>>({
@@ -38,6 +34,8 @@ const CreateCourseForm = ({
   });
 
   async function onSubmit(values: z.infer<typeof createCourseSchema>) {
+    console.log("Form submitted!");
+
     setLoading(true);
     try {
       await createCourse({ ...values, type: "course" });
@@ -46,7 +44,6 @@ const CreateCourseForm = ({
         description: "Course created successfully",
       });
       form.reset();
-      setOpen(false);
     } catch (error) {
       const result = error as Error;
       toast.add({
@@ -101,7 +98,11 @@ const CreateCourseForm = ({
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <Label htmlFor="level">Level</Label>
-              <Select onValueChange={field.onChange} disabled={loading}>
+              <Select
+                value={field.value}
+                onValueChange={field.onChange}
+                disabled={loading}
+              >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
@@ -124,7 +125,11 @@ const CreateCourseForm = ({
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <Label htmlFor="category">Category</Label>
-              <Select onValueChange={field.onChange} disabled={loading}>
+              <Select
+                value={field.value}
+                onValueChange={field.onChange}
+                disabled={loading}
+              >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
