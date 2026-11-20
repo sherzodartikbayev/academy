@@ -62,12 +62,8 @@ export const createCourseSchema = z.object({
     .regex(/^[a-z0-9]+(?:[a-z0-9]+)*$/, {
       message: "Slug can only contain lowercase letters, numbers and hypens",
     }),
-  level: z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED"], {
-    error: "Level is required",
-  }),
-  category: z.enum(["FRONTEND", "BACKEND", "MOBILE"], {
-    error: "Category is required",
-  }),
+  level: z.string({ error: "Level is required" }),
+  category: z.string({ error: "Category is required" }),
   type: z.enum(["course", "project"]),
 });
 
@@ -102,4 +98,8 @@ export const overviewSchema = z.object({
     .string({ error: "Keywords are required" })
     .min(5, { message: "Keywords must be less than 200 characters." })
     .max(200),
+});
+
+export const sectionSchema = z.object({
+  title: z.string({ error: "Title is required" }),
 });

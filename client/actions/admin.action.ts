@@ -1,7 +1,7 @@
 "use server";
 
 import { axiosClient } from "@/lib/http";
-import { CourseType } from "@/types/app.types";
+import { CourseType, SectionType } from "@/types/app.types";
 import { revalidatePath } from "next/cache";
 
 // Course
@@ -49,5 +49,24 @@ export const createSection = async (section: {
   courseId: string;
 }) => {
   const { data } = await axiosClient.post("/api/admin/section", section);
+  revalidatePath(`/admin/courses/${section.courseId}`);
+  return data;
+};
+
+export const updateSection = async (
+  sectionId: string,
+  section: Partial<SectionType>,
+) => {
+  const { data } = await axiosClient.patch(
+    `/api/admin/section/${sectionId}`,
+    section,
+  );
+  revalidatePath("/admin/courses");
+  return data;
+};
+
+export const deleteSection = async (sectionId: string, courseId: string) => {
+  const { data } = await axiosClient.delete(`/api/admin/section/${sectionId}`);
+  revalidatePath(`/admin/courses/${courseId}`);
   return data;
 };

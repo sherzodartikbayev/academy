@@ -39,6 +39,8 @@ const CreateCourseModal = () => {
     defaultValues: {
       title: "",
       slug: "",
+      level: "",
+      category: "",
     },
   });
 
