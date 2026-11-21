@@ -1,8 +1,10 @@
+import { getCourses } from "@/actions/admin.action";
 import CourseCard from "@/components/cards/course.card";
-import { courses } from "@/constants";
 import Link from "next/link";
 
-const CoursesPage = () => {
+const CoursesPage = async () => {
+  const courses = await getCourses();
+
   return (
     <>
       <h1 className="text-2xl font-space-grotesk font-semibold">Courses</h1>

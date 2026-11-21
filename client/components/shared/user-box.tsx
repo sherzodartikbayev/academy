@@ -67,7 +67,10 @@ const UserBox = ({ user }: UserBoxProps) => {
 
           <div className="">
             <Link href="/dashboard">
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+                className="cursor-pointer"
+                render={<Link href="/dashboard" />}
+              >
                 Dashboard
               </DropdownMenuItem>
             </Link>

@@ -6,15 +6,15 @@ import { revalidatePath } from "next/cache";
 
 // Course
 export const getCourses = async () => {
-  const res = await axiosClient.get("/api/admin/courses");
-  return res.data;
+  const { data } = await axiosClient.get("/api/admin/courses");
+  return data;
 };
 
 export const getCourse = async (courseId: string) => {
-  const res = await axiosClient.get<{ data: CourseType }>(
+  const { data } = await axiosClient.get<{ data: CourseType }>(
     `/api/admin/course/${courseId}`,
   );
-  return res.data;
+  return data;
 };
 
 export const createCourse = async (data: Partial<CourseType>) => {
@@ -33,9 +33,9 @@ export const updateCourse = async (
 };
 
 export const deleteCourse = async (courseId: string) => {
-  const res = await axiosClient.delete(`/api/admin/course/${courseId}`);
+  const { data } = await axiosClient.delete(`/api/admin/course/${courseId}`);
   revalidatePath("/admin/courses");
-  return res.data;
+  return data;
 };
 
 // Section
