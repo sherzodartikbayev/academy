@@ -36,8 +36,6 @@ const CreateSectionModal = () => {
   });
 
   async function onSubmit(values: z.infer<typeof sectionSchema>) {
-    console.log("Form submitted!");
-
     setLoading(true);
     try {
       await createSection({ title: values.title, courseId });

@@ -34,8 +34,8 @@ export interface LessonType {
   position: number;
   content: string;
   videoId: string;
-  hours: number;
-  minutes: number;
+  hours: string;
+  minutes: string;
   sectionId: string | SectionType;
   course: string | CourseType;
 }

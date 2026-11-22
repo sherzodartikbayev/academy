@@ -8,20 +8,21 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import CourseAction from "./_components/course-action";
-import Curriculum from "./_components/curriculum";
 import Overview from "./_components/overview";
 import Overviews from "./_components/reviews";
 import Thumbnail from "./_components/thumbnail";
 import { getCourse } from "@/actions/admin.action";
+import Lesson from "./_components/lesson";
+import Section from "./_components/section";
 
 interface PageProps {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ tab: string }>;
+  searchParams: Promise<{ tab: string; section?: string }>;
 }
 
 const CourseDetailPage = async ({ params, searchParams }: PageProps) => {
   const { id } = await params;
-  const { tab } = await searchParams;
+  const { tab, section } = await searchParams;
 
   const { data } = await getCourse(id);
 
@@ -66,7 +67,8 @@ const CourseDetailPage = async ({ params, searchParams }: PageProps) => {
         </div>
         <div className="col-span-4">
           {tab === "overview" && <Overview courseData={data} />}
-          {tab === "curriculum" && <Curriculum courseData={data} />}
+          {tab === "sections" && <Section courseData={data} />}
+          {tab === "lesson" && <Lesson courseData={data} sectionId={section} />}
           {tab === "thumbnail" && <Thumbnail courseData={data} />}
           {tab === "reviews" && <Overviews courseData={data} />}
         </div>
@@ -79,7 +81,7 @@ export default CourseDetailPage;
 
 const items = [
   { title: "overview", icon: FolderKanban },
-  { title: "curriculum", icon: List },
+  { title: "sections", icon: List },
   { title: "thumbnail", icon: ImageIcon },
   { title: "reviews", icon: MessageSquareReply },
 ];

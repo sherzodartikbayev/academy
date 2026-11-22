@@ -1,7 +1,7 @@
 "use server";
 
 import { axiosClient } from "@/lib/http";
-import { CourseType, SectionType } from "@/types/app.types";
+import { CourseType, LessonType, SectionType } from "@/types/app.types";
 import { revalidatePath } from "next/cache";
 
 // Course
@@ -67,6 +67,33 @@ export const updateSection = async (
 
 export const deleteSection = async (sectionId: string, courseId: string) => {
   const { data } = await axiosClient.delete(`/api/admin/section/${sectionId}`);
+  revalidatePath(`/admin/courses/${courseId}`);
+  return data;
+};
+
+// Lesson
+export const getLessons = async (sectionId: string) => {
+  const { data } = await axiosClient.get(`/api/admin/lessons/${sectionId}`);
+  return data;
+};
+
+export const createLesson = async (data: Partial<LessonType>) => {
+  const res = await axiosClient.post("/api/admin/lesson", data);
+  revalidatePath(`/admin/courses/${data.course}`);
+  return res.data;
+};
+
+export const updateLesson = async (
+  lessonId: string,
+  data: Partial<LessonType>,
+) => {
+  const res = await axiosClient.patch(`/api/admin/lesson/${lessonId}`, data);
+  revalidatePath(`/admin/courses/${data.course}`);
+  return res.data;
+};
+
+export const deleteLesson = async (lessonId: string, courseId: string) => {
+  const { data } = await axiosClient.delete(`/api/admin/lesson/${lessonId}`);
   revalidatePath(`/admin/courses/${courseId}`);
   return data;
 };

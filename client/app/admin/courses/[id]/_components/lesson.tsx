@@ -1,0 +1,39 @@
+import { Separator } from "@/components/ui/separator";
+import { CourseType } from "@/types/app.types";
+import CreateLessonModal from "./create-lesson.modal";
+import { getLessons } from "@/actions/admin.action";
+import LessonList from "./lesson-list";
+import { Plus } from "lucide-react";
+
+interface Props {
+  courseData: CourseType;
+  sectionId?: string;
+}
+
+const Lesson = async ({ sectionId }: Props) => {
+  const { data } = await getLessons(sectionId!);
+
+  return (
+    <div className="bg-sidebar p-6 rounded-md border">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold font-space-grotesk">Lessons</h1>
+        <CreateLessonModal>
+          <span>Add</span>
+          <Plus />
+        </CreateLessonModal>
+      </div>
+
+      <Separator className="my-4" />
+
+      {data.length === 0 && (
+        <p className="text-center py-10 text-muted-foreground">
+          No sections found.
+        </p>
+      )}
+
+      <LessonList lessons={data} />
+    </div>
+  );
+};
+
+export default Lesson;

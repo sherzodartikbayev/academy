@@ -2,12 +2,7 @@
 
 import { SectionType } from "@/types/app.types";
 import SectionCard from "./section.card";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  DropResult,
-} from "@hello-pangea/dnd";
+import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
 import { updateSection } from "@/actions/admin.action";
 import { toast } from "@/components/ui/toast";
 
@@ -53,11 +48,9 @@ const SectionList = ({ sections }: Props) => {
             ref={provided.innerRef}
             className="space-y-1"
           >
-            {sections
-              .sort((section) => section.position)
-              .map((section, idx) => (
-                <SectionCard key={section._id} section={section} index={idx} />
-              ))}
+            {sections.map((section, idx) => (
+              <SectionCard key={section._id} section={section} index={idx} />
+            ))}
           </div>
         )}
       </Droppable>

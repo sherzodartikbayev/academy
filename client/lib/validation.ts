@@ -103,3 +103,11 @@ export const overviewSchema = z.object({
 export const sectionSchema = z.object({
   title: z.string({ error: "Title is required" }),
 });
+
+export const lessonSchema = z.object({
+  title: z.string({ error: "Title is required" }),
+  content: z.string().optional(),
+  videoId: z.string({ error: "Video ID is required" }),
+  hours: z.string({ error: "Hours is required" }),
+  minutes: z.string({ error: "Minutes is required" }),
+});

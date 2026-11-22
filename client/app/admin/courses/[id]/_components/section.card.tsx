@@ -8,6 +8,7 @@ import { Grip, List, X } from "lucide-react";
 import { useState } from "react";
 import { debounce } from "lodash";
 import { Draggable } from "@hello-pangea/dnd";
+import Link from "next/link";
 
 interface Props {
   section: SectionType;
@@ -61,7 +62,7 @@ const SectionCard = ({ section, index }: Props) => {
     }
   };
 
-  const debouncedUpdate = debounce(onUpdateSection, 1000);
+  const debouncedUpdate = debounce(onUpdateSection, 3000);
 
   return (
     <Draggable draggableId={section._id} index={index}>
@@ -119,8 +120,12 @@ const SectionCard = ({ section, index }: Props) => {
             >
               Delete
             </Button>
-            <Button size="sm" onClick={() => setEdit(true)} disabled={loading}>
-              <List />
+            <Button size="sm" disabled={loading}>
+              <Link
+                href={`/admin/courses/${section.course}/?tab=lesson&section=${section._id}`}
+              >
+                <List />
+              </Link>
             </Button>
           </div>
         </div>
