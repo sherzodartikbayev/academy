@@ -14,7 +14,7 @@ const Section = async ({ courseData }: Props) => {
   return (
     <div className="bg-sidebar p-6 rounded-md border">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold font-space-grotesk">Sections</h1>
+        <h2 className="text-2xl font-semibold font-space-grotesk">Sections</h2>
         <CreateSectionModal />
       </div>
 

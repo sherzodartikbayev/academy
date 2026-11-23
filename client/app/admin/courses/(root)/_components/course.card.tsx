@@ -15,8 +15,8 @@ const CourseCard = ({ course }: Props) => {
       <div className="relative h-52 w-full bg-sidebar rounded-lg">
         {course.previewImage && (
           <Image
-            src={course.previewImage.url}
-            alt={course.previewImage.key}
+            src={course.previewImage}
+            alt={course.title}
             fill
             className="rounded-t-lg object-cover"
           />

@@ -135,3 +135,17 @@ export const deleteLesson = catchAsync(async (req, res) => {
     .status(200)
     .json({ message: "Lesson deleted successfully", success: true });
 });
+
+export const uploadPreviewImage = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  if (!req.file) {
+    return res
+      .status(400)
+      .json({ message: "No file uploaded", success: false });
+  }
+
+  const data = await AdminService.uploadPreviewImage(id, req.file.path);
+  return res
+    .status(200)
+    .json({ data, message: "Preview image uploaded successfully" });
+});

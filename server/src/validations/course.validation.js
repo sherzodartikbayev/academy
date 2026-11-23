@@ -11,6 +11,8 @@ export const courseValidation = z.object({
   keywords: z.string().optional(),
   isPublished: z.boolean().default(false),
   type: z.enum(["course", "project"]),
+  previewImage: z.string(),
+  previewVideo: z.string(),
 });
 
 export const updateCourseValidation = courseValidation.partial();

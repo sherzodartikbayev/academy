@@ -1,6 +1,9 @@
+import { envConfig } from "../config/environment.config.js";
 import courseModel from "../models/course.model.js";
 import lessonModel from "../models/lesson.model.js";
 import sectionModel from "../models/section.model.js";
+import fs from "fs";
+import path from "path";
 
 // Course
 export const getAllCourses = async () => {
@@ -32,8 +35,10 @@ export const editCourse = async (id, data) => {
   const existCourse = await courseModel.findById(id);
   if (!existCourse) throw new Error("Course not found");
 
+  console.log(data);
+
   const updatedCourse = await courseModel.findByIdAndUpdate(id, data, {
-    new: true,
+    returnDocument: "after",
   });
 
   return updatedCourse;
@@ -79,7 +84,7 @@ export const updateSection = async (id, data) => {
   if (!existSection) throw new Error("Section not found");
 
   const updatedSection = await sectionModel.findByIdAndUpdate(id, data, {
-    new: true,
+    returnDocument: "after",
   });
 
   return updatedSection;
@@ -119,7 +124,7 @@ export const createLesson = async (data) => {
   await sectionModel.findByIdAndUpdate(
     sectionId,
     { $push: { lessons: createdLesson._id } },
-    { new: true },
+    { returnDocument: "after" },
   );
 
   return createdLesson;
@@ -130,7 +135,7 @@ export const updateLesson = async (id, data) => {
   if (!existLesson) throw new Error("Lesson not found");
 
   const updatedLesson = await lessonModel.findByIdAndUpdate(id, data, {
-    new: true,
+    returnDocument: "after",
   });
 
   return updatedLesson;
@@ -146,4 +151,32 @@ export const deleteLesson = async (id) => {
   await lessonModel.findByIdAndDelete(id);
 
   return existLesson;
+};
+
+export const uploadPreviewImage = async (id, file) => {
+  const course = await courseModel.findById(id);
+  if (!course) {
+    throw new Error("Course not found");
+  }
+
+  if (course.previewImage) {
+    const filename = path.basename(course.previewImage);
+    const filePath = path.join(path.resolve(), "public", "uploads", filename);
+
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        throw new Error("Error deleting old preview image");
+      }
+    });
+  }
+
+  const filePath = file.split("public")[1];
+
+  const updatedCourse = await courseModel.findByIdAndUpdate(
+    id,
+    { previewImage: `${envConfig.SERVER_URL}${filePath}` },
+    { returnDocument: "after" },
+  );
+
+  return updatedCourse;
 };

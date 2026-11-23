@@ -6,7 +6,9 @@ import { revalidatePath } from "next/cache";
 
 // Course
 export const getCourses = async () => {
-  const { data } = await axiosClient.get("/api/admin/courses");
+  const { data } = await axiosClient.get<{ data: CourseType[] }>(
+    "/api/admin/courses",
+  );
   return data;
 };
 
@@ -94,6 +96,18 @@ export const updateLesson = async (
 
 export const deleteLesson = async (lessonId: string, courseId: string) => {
   const { data } = await axiosClient.delete(`/api/admin/lesson/${lessonId}`);
+  revalidatePath(`/admin/courses/${courseId}`);
+  return data;
+};
+
+export const updatePreviewImage = async (
+  courseId: string,
+  formData: FormData,
+) => {
+  const { data } = await axiosClient.put(
+    `/api/admin/preview-image/${courseId}`,
+    formData,
+  );
   revalidatePath(`/admin/courses/${courseId}`);
   return data;
 };

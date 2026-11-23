@@ -12,7 +12,8 @@ const courseSchema = new Schema(
     keywords: { type: String },
     isPublished: { type: Boolean, default: false },
     type: { type: String, enum: ["course", "project"], required: true },
-    previewImage: { type: Schema.Types.ObjectId, ref: "Image" },
+    previewImage: { type: String },
+    previewVideo: { type: String },
   },
   { timestamps: true },
 );

@@ -17,7 +17,8 @@ export interface CourseType {
   isPublished: boolean;
   type: string;
   createdAt: string;
-  previewImage: ImageType;
+  previewImage: string;
+  previewVideo: string;
 }
 
 export interface SectionType {

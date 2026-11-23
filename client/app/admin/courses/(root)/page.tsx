@@ -20,9 +20,10 @@ const CoursesPage = async () => {
       <Separator className="my-4" />
 
       <div className="grid grid-cols-3 gap-4">
-        {data.map((course: CourseType) => (
-          <CourseCard key={course._id} course={course} />
-        ))}
+        {data &&
+          data.map((course: CourseType) => (
+            <CourseCard key={course._id} course={course} />
+          ))}
       </div>
     </div>
   );

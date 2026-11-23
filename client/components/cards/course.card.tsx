@@ -9,13 +9,19 @@ const CourseCard = ({ course }: CourseCardPros) => {
   return (
     <div className="p-0 rounded-lg bg-card">
       <div className="relative h-52 w-full bg-sidebar rounded-lg">
-        <Image
-          src={course.previewImage.url}
-          alt={course.previewImage.key}
-          fill
-          className="rounded-lg object-cover"
-          loading="eager"
-        />
+        {course.previewImage ? (
+          <Image
+            src={course.previewImage}
+            alt={course.title}
+            fill
+            className="rounded-lg object-cover"
+            loading="eager"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+            No thumbnail
+          </div>
+        )}
       </div>
       <h2 className="p-2 text-xl font-space-grotesk font-semibold">
         {course.title}
