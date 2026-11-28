@@ -5,9 +5,9 @@ import { CourseType, LessonType, SectionType } from "@/types/app.types";
 import { revalidatePath } from "next/cache";
 
 // Course
-export const getCourses = async () => {
+export const getCourses = async (type: "course" | "project") => {
   const { data } = await axiosClient.get<{ data: CourseType[] }>(
-    "/api/admin/courses",
+    `/api/admin/courses/${type}`,
   );
   return data;
 };
@@ -22,6 +22,7 @@ export const getCourse = async (courseId: string) => {
 export const createCourse = async (data: Partial<CourseType>) => {
   const res = await axiosClient.post("/api/admin/course", data);
   revalidatePath("/admin/courses");
+  revalidatePath("/admin/projects");
   return res.data;
 };
 
@@ -31,12 +32,14 @@ export const updateCourse = async (
 ) => {
   const res = await axiosClient.patch(`/api/admin/course/${courseId}`, data);
   revalidatePath(`/admin/courses/${courseId}`);
+  revalidatePath(`/admin/projects/${courseId}`);
   return res.data;
 };
 
 export const deleteCourse = async (courseId: string) => {
   const { data } = await axiosClient.delete(`/api/admin/course/${courseId}`);
   revalidatePath("/admin/courses");
+  revalidatePath("/admin/projects");
   return data;
 };
 
@@ -79,9 +82,22 @@ export const getLessons = async (sectionId: string) => {
   return data;
 };
 
+export const getProjectLesson = async (courseId: string) => {
+  const { data } = await axiosClient.get(
+    `/api/admin/project-lessons/${courseId}`,
+  );
+  return data;
+};
+
 export const createLesson = async (data: Partial<LessonType>) => {
   const res = await axiosClient.post("/api/admin/lesson", data);
   revalidatePath(`/admin/courses/${data.course}`);
+  return res.data;
+};
+
+export const createProjectLesson = async (data: Partial<LessonType>) => {
+  const res = await axiosClient.post("/api/admin/project-lesson", data);
+  revalidatePath(`/admin/projects/${data.course}`);
   return res.data;
 };
 
@@ -91,12 +107,24 @@ export const updateLesson = async (
 ) => {
   const res = await axiosClient.patch(`/api/admin/lesson/${lessonId}`, data);
   revalidatePath(`/admin/courses/${data.course}`);
+  revalidatePath(`/admin/projects/${data.course}`);
   return res.data;
 };
 
 export const deleteLesson = async (lessonId: string, courseId: string) => {
   const { data } = await axiosClient.delete(`/api/admin/lesson/${lessonId}`);
   revalidatePath(`/admin/courses/${courseId}`);
+  return data;
+};
+
+export const deleteProjectLesson = async (
+  lessonId: string,
+  courseId: string,
+) => {
+  const { data } = await axiosClient.delete(
+    `/api/admin/project-lesson/${lessonId}`,
+  );
+  revalidatePath(`/admin/projects/${courseId}`);
   return data;
 };
 
@@ -109,5 +137,6 @@ export const updatePreviewImage = async (
     formData,
   );
   revalidatePath(`/admin/courses/${courseId}`);
+  revalidatePath(`/admin/projects/${data.course}`);
   return data;
 };

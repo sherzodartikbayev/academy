@@ -13,8 +13,8 @@ const CourseCard = ({ course }: CourseCardPros) => {
           <Image
             src={course.previewImage}
             alt={course.title}
-            fill
             className="rounded-lg object-cover"
+            fill
             loading="eager"
           />
         ) : (

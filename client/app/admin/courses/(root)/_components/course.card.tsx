@@ -13,16 +13,14 @@ const CourseCard = ({ course }: Props) => {
   return (
     <div className="p-0 rounded-lg bg-card">
       <div className="relative h-52 w-full bg-sidebar rounded-lg">
-        {course.previewImage && (
+        {course.previewImage ? (
           <Image
             src={course.previewImage}
             alt={course.title}
             fill
             className="rounded-t-lg object-cover"
           />
-        )}
-
-        {!course.previewImage && (
+        ) : (
           <div className="flex items-center justify-center h-full w-full text-9xl font-black text-muted-foreground">
             {course.title.charAt(0)}
           </div>

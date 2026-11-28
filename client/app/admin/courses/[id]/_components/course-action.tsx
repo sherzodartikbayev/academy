@@ -4,7 +4,7 @@ import { deleteCourse, updateCourse } from "@/actions/admin.action";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toast";
 import { CourseType } from "@/types/app.types";
-import { ArrowLeft, Pencil, Trash } from "lucide-react";
+import { ArrowLeft, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 

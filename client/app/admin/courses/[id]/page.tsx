@@ -1,11 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  FolderKanban,
-  ImageIcon,
-  List,
-  MessageSquareReply,
-} from "lucide-react";
 import Link from "next/link";
 import CourseAction from "./_components/course-action";
 import Overview from "./_components/overview";
@@ -14,6 +8,7 @@ import Thumbnail from "./_components/thumbnail";
 import { getCourse } from "@/actions/admin.action";
 import Lesson from "./_components/lesson";
 import Section from "./_components/section";
+import { courseTabItems } from "@/constants";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -43,7 +38,7 @@ const CourseDetailPage = async ({ params, searchParams }: PageProps) => {
             </h3>
             <Separator className="my-2" />
             <div className="flex flex-col space-y-2">
-              {items.map((item) => (
+              {courseTabItems.map((item) => (
                 <Button
                   key={item.title}
                   variant={tab === item.title ? "secondary" : "ghost"}
@@ -78,10 +73,3 @@ const CourseDetailPage = async ({ params, searchParams }: PageProps) => {
 };
 
 export default CourseDetailPage;
-
-const items = [
-  { title: "overview", icon: FolderKanban },
-  { title: "sections", icon: List },
-  { title: "thumbnail", icon: ImageIcon },
-  { title: "reviews", icon: MessageSquareReply },
-];

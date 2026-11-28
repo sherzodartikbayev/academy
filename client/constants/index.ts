@@ -2,9 +2,13 @@ import {
   Braces,
   Bug,
   CircleGauge,
+  FolderKanban,
   GaugeCircle,
   GitCompareArrows,
   Home,
+  ImageIcon,
+  List,
+  MessageSquareReply,
   Rss,
   Terminal,
   UserPen,
@@ -160,4 +164,18 @@ export const admin_navbar_items = [
   { title: "Courses", href: "/admin/courses", icon: Braces },
   { title: "Projects", href: "/admin/projects", icon: Terminal },
   { title: "Source codes", href: "/admin/source-codes", icon: Bug },
+];
+
+export const courseTabItems = [
+  { title: "overview", icon: FolderKanban },
+  { title: "sections", icon: List },
+  { title: "thumbnail", icon: ImageIcon },
+  { title: "reviews", icon: MessageSquareReply },
+];
+
+export const projectTabItems = [
+  { title: "overview", icon: FolderKanban },
+  { title: "lessons", icon: List },
+  { title: "thumbnail", icon: ImageIcon },
+  { title: "reviews", icon: MessageSquareReply },
 ];

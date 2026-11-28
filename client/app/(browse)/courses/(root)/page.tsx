@@ -4,7 +4,7 @@ import { CourseType } from "@/types/app.types";
 import Link from "next/link";
 
 const CoursesPage = async () => {
-  const { data } = await getCourses();
+  const { data } = await getCourses("course");
 
   return (
     <>

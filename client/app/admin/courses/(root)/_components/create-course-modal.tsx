@@ -41,18 +41,21 @@ const CreateCourseModal = () => {
       slug: "",
       level: "",
       category: "",
+      type: "course",
     },
   });
 
   async function onSubmit(values: z.infer<typeof createCourseSchema>) {
+    console.log("FORM SUBMITTED:", values);
     setLoading(true);
     try {
-      await createCourse({ ...values, type: "course" });
+      await createCourse({ ...values });
       toast.add({
         type: "success",
         description: "Course created successfully",
       });
       form.reset();
+      setOpen(false);
     } catch (error) {
       const result = error as Error;
       toast.add({
@@ -136,11 +139,11 @@ const CreateCourseModal = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="BEGINNER">Beginner</SelectItem>
-                        <SelectItem value="INTERMEDIATE">
+                        <SelectItem value="Beginner">Beginner</SelectItem>
+                        <SelectItem value="Intermediate">
                           Intermediate
                         </SelectItem>
-                        <SelectItem value="ADVANCED">Advanced</SelectItem>
+                        <SelectItem value="Advanced">Advanced</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -167,9 +170,9 @@ const CreateCourseModal = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="FRONTEND">Frontend</SelectItem>
-                        <SelectItem value="BACKEND">Backend</SelectItem>
-                        <SelectItem value="MOBILE">Mobile</SelectItem>
+                        <SelectItem value="Frontend">Frontend</SelectItem>
+                        <SelectItem value="Backend">Backend</SelectItem>
+                        <SelectItem value="Mobile">Mobile</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
